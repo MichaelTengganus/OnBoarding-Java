@@ -38,7 +38,7 @@ public class ShirtsController {
 			if (id == null)
 				shirtsDao.findAll().forEach(shirts::add);
 			else
-				shirtsDao.findByid(id).forEach(shirts::add);
+				shirts.add(shirtsDao.findById(id));
 
 			if (shirts.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -59,7 +59,7 @@ public class ShirtsController {
 			if (productCode == null)
 				shirtsDao.findAll().forEach(shirts::add);
 			else
-				shirtsDao.findByProductCode(productCode).forEach(shirts::add);
+				shirts.add(shirtsDao.findByProductCode(productCode));
 
 			response.setCode("200");
 			if (shirts.isEmpty()) {
@@ -116,7 +116,7 @@ public class ShirtsController {
 	public ResponseDTO update(@PathVariable int id, @RequestBody ShirtsModel newShirts) {
 		ResponseDTO response = new ResponseDTO();
 		try {
-			ShirtsModel oldShirt = shirtsDao.findByid(id).stream().findFirst().get();
+			ShirtsModel oldShirt = shirtsDao.findById(id);
 			ShirtsModel shirt = shirtsService.update(oldShirt, newShirts);
 
 			response.setCode("200");

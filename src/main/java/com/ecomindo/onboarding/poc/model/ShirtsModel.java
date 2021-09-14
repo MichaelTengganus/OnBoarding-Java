@@ -37,7 +37,7 @@ public class ShirtsModel {
 		this.description = description;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

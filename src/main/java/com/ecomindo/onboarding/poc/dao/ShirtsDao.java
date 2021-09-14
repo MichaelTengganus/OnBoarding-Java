@@ -13,10 +13,10 @@ public interface ShirtsDao extends JpaRepository<ShirtsModel, Long> {
 	List<OptionsDTO> findDDLid();
 
 	@Query(value = "select s from ShirtsModel s where s.id = :id ")
-	List<ShirtsModel> findByid(int id);
+	ShirtsModel findById(int id);
 
-	@Query(value = "select s from ShirtsModel s where s.productcode = :productCode ")
-	List<ShirtsModel> findByProductCode(String productCode);
+	@Query(value = "select s from ShirtsModel s where s.productcode = :productCode")
+	ShirtsModel findByProductCode(String productCode);
 
 	void deleteById(int id);
 }
